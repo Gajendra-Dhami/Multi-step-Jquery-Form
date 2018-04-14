@@ -1,0 +1,399 @@
+<html>
+<head>
+<style>
+
+
+* {
+margin: 0;
+padding: 0;
+}
+html {
+height: 100%;
+}
+
+background: linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),  
+}
+body {
+font-family: montserrat, arial, verdana;
+}
+
+/*form styles*/
+#msform {
+width: 400px;
+margin: 40px auto;
+text-align: center;
+position: relative;
+}
+#msform fieldset {
+background: white;
+border: 0 none;
+border-radius: 3px;
+box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+padding: 20px 30px;
+box-sizing: border-box;
+width: 80%;
+margin: 0 10%;
+/*stacking fieldsets above each other*/
+position: absolute;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+padding: 15px;
+border: 1px solid #ccc;
+border-radius: 3px;
+margin-bottom: 10px;
+width: 100%;
+box-sizing: border-box;
+font-family: montserrat;
+color: #2C3E50;
+font-size: 13px;
+}
+
+/*buttons*/
+#msform .action-button {
+width: 100px;
+background: #bbbbbb;;
+font-weight: bold;
+color: white;
+border: 0 none;
+border-radius: 1px;
+cursor: pointer;
+padding: 10px 5px;
+margin: 35px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+box-shadow: 0 0 0 2px white, 0 0 0 3px #bbbbbb;;
+}
+
+
+/*headings*/
+.fs-title {
+font-size: 15px;
+text-transform: uppercase;
+color: #2C3E50;
+margin-bottom: 10px;
+}
+.fs-subtitle {
+font-weight: normal;
+font-size: 13px;
+color: #666;
+margin-bottom: 20px;
+}
+
+#msform input[type="radio"]{
+width:10% !important;
+}
+
+/* Rating CSS */
+.rating {overflow: hidden;display: inline-block;}
+.rating-input {float: right;width: 20px;height: 20px;padding: 0;margin: 0 0 0 -16px;opacity: 0;}
+.rating-star {cursor: pointer;position: relative;display: block;width: 16px;height: 16px;background: url('star.png') 0 -16px;
+}
+.rating-star:hover {background-position: 0 0;}
+.rating-star {position: relative;float: right;display: block;width: 16px;height: 16px;background: url('star.png') 0 -16px;}
+.rating-star:hover,.rating-star:hover ~ .rating-star {background-position: 0 0;}
+.rating-star:hover,.rating-star:hover ~ .rating-star,.rating-input:checked ~ .rating-star {background-position: 0 0;}
+.rating:hover .rating-star:hover,.rating:hover .rating-star:hover ~ .rating-star,.rating-input:checked ~ .rating-star {    background-position: 0 0;}
+.rating-star,.rating:hover .rating-star {position: relative; float: right; display: block; width: 16px; height: 16px;    background: url('star.png') 0 -16px;}
+
+</style>
+<title>jQuery Multi-Step Form Example</title>
+</head>
+<body>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<h1 style="margin-top:150px" align="center">Customer Details</h1>
+<!-- multistep form -->
+<form id="msform">
+<!-- progressbar -->
+<!--
+<ul id="progressbar">
+<li class="active">Account Setup</li>
+<li>Social Profiles</li>
+<li>Personal Details</li>
+</ul>
+-->
+<!-- fieldsets -->
+<fieldset>
+	<h3 class="fs-subtitle">1. Are you a new customer ?</h3>
+	<input type="radio" value="yes" name="customer"  id="askquestion" class="new_customer next" /><label>Yes</label>
+	<input type="radio" value="no" name="customer"   id="askquestion" class="old_customer next"/><label>No<label>
+</fieldset>
+
+<fieldset  id="for_new_customer">
+	<h3 class="fs-subtitle">2. would you like to win a meal for 4 this month?</h3>
+	  <input type="radio" value="yes" name="meal"  id="askquestion" class="next"/><label>Yes</label>
+	  <input type="radio" value="no" name="meal"  id="askquestion" class="next"/><label>No</label>
+	  <p></p>
+	  <input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">3. How would you rate your visit ?</h3>
+			<input type="radio" class="rating-input next" id="rating-input-1-5" name="rating-visit" value="5">
+			<label for="rating-input-1-5" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-1-4" name="rating-visit" value="4">
+			<label for="rating-input-1-4" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-1-3" name="rating-visit" value="3">
+			<label for="rating-input-1-3" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-1-2" name="rating-visit" value="2">
+			<label for="rating-input-1-2" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-1-1" name="rating-visit" value="1">
+			<label for="rating-input-1-1" class="rating-star"></label>
+		<p></p>
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">4. How would you rate the staff ?</h3>
+	 
+		<input type="radio" class="rating-input next" id="rating-input-2-5" name="rating-staff" value="5" >
+		<label for="rating-input-2-5" class="rating-star"></label>
+		<input type="radio" class="rating-input next" id="rating-input-2-4" name="rating-staff" value="4" >
+		<label for="rating-input-2-4" class="rating-star"></label>
+		<input type="radio" class="rating-input next" id="rating-input-2-3" name="rating-staff" value="3" >
+		<label for="rating-input-2-3" class="rating-star"></label>
+		<input type="radio" class="rating-input next" id="rating-input-2-2" name="rating-staff" value="2">
+		<label for="rating-input-2-2" class="rating-star"></label>
+		<input type="radio" class="rating-input next" id="rating-input-2-1" name="rating-staff" value="1" >
+		<label for="rating-input-2-1" class="rating-star"></label>
+		<p></p>
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">5. How would you rate the food ?</h3>
+			<input type="radio" class="rating-input next" id="rating-input-3-5" name="rating-food" value="5">
+			<label for="rating-input-3-5" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-3-4" name="rating-food" value="4">
+			<label for="rating-input-3-4" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-3-3" name="rating-food" value="3">
+			<label for="rating-input-3-3" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-3-2" name="rating-food" value="2">
+			<label for="rating-input-3-2" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-3-1" name="rating-food" value="1">
+			<label for="rating-input-3-1" class="rating-star"></label>
+			<p></p>
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">6. How would you rate the atmosphere ?</h3>
+			<input type="radio" class="rating-input next" id="rating-input-4-5" name="rating-temperature" value="5">
+			<label for="rating-input-4-5" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-4-4" name="rating-temperature" value="4">
+			<label for="rating-input-4-4" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-4-3" name="rating-temperature" value="3">
+			<label for="rating-input-4-3" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-4-2" name="rating-temperature" value="2">
+			<label for="rating-input-4-2" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-4-1" name="rating-temperature" value="1">
+			<label for="rating-input-4-1" class="rating-star"></label>
+			<p></p>
+	<input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">7. How would you rate the restaurant temperature ?</h3>
+			<input type="radio" class="rating-input next" id="rating-input-5-5" name="rating-temperature" value="5">
+			<label for="rating-input-5-5" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-5-4" name="rating-temperature" value="4">
+			<label for="rating-input-5-4" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-5-3" name="rating-temperature" value="3">
+			<label for="rating-input-5-3" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-5-2" name="rating-temperature" value="2">
+			<label for="rating-input-5-2" class="rating-star"></label>
+			<input type="radio" class="rating-input next" id="rating-input-5-1" name="rating-temperature" value="1">
+			<label for="rating-input-5-1" class="rating-star"></label>
+			<p></p>
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">8. Would you recommend us ?</h3>
+	<input type="radio" value="yes" name="recommend"  id="yes_recommend" class="next"/><label>Yes</label>
+	<input type="radio" value="no" name="recommend"  id="no_recommend" /><label>No</label>
+	<p></p>
+	<div id="ask_1" style="display:none">
+		<h3 class="fs-subtitle">why you not recommend us?</h3>
+		<div class="box">
+			<textarea rows="4">
+
+			</textarea>
+		</div>
+	 </div>
+	 <input type="button" name="previous" class="previous action-button" value="Previous" />
+	<input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">9. Would you return ?</h3>
+		<input type="radio" value="yes" name="you_return" id="yes_return" class="next"/><label>Yes</label> 
+		<input type="radio" value="no" name="you_return" id="no_return" /><label>No</label>
+		<p></p>
+		<div id="ask_2" style="display:none">
+			<h3 class="fs-subtitle">why you not return ?</h3>
+			<div class="box">
+				<textarea rows="4" class="next">
+
+				</textarea>
+			</div>
+		 </div>
+	<input type="button" name="previous" class="previous action-button" value="Previous" />
+	<input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+
+<fieldset>
+	<h3 class="fs-subtitle">10. For New Customer ?</h3>
+		<div id="new_details" >
+		<input type="text" value="" name="email" Placeholder="Email Address"/>
+		<input type="text" value="" name="name" Placeholder="Name"/>
+		<input type="text" value="" name="phone" Placeholder="Phone"/>
+	</div>
+	<div id="old_details" style="display:none;">
+		  
+	</div>
+	<p></p>
+	<input type="button" name="previous" class="previous action-button" value="Previous" />
+	<input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+<fieldset>
+	<h3 class="fs-subtitle">11. Would you also like to be entered into Birthday club - You will get a free meal on your birthday if you book a table? </h3>
+		<input type="radio" value="yes" name="birth_day_club" id="yes_birthday"/><label>Yes</label> 
+		<input type="radio" value="no" name="birth_day_club" id="no_birthday" class="next"/><label>No</label>
+		<div id="ask_3" style="display:none">
+			<h3 class="fs-subtitle">Please Enter Your Date of Birth</h3>
+			<p><input type="text" name="dob" value="" placeholder="DOB(MM/DD/YYYY)" id="calendar" /></p>
+		 </div>
+		 <p></p>
+		 <input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+<fieldset>
+	<h3 class="fs-subtitle">Thank you for taking the time to review our restaurant Please review us on Trip Advisor<h3>
+	<input type="submit" name="submit" class="submit action-button" value="Submit" />
+</fieldset>
+</form>
+
+<!-- jQuery --> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- jQuery easing plugin --> 
+<script src="js/jquery.easing.min.js" type="text/javascript"></script> 
+<script>
+$(function() {
+
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+
+	
+$("#no_recommend").click(function(){
+	$("#ask_1").css("display", "block");
+	
+	});
+$("#no_return").click(function(){
+	$("#ask_2").css("display", "block");
+	
+	});
+$("#yes_birthday").click(function(){
+	$("#ask_3").css("display", "block");
+	
+	});
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+   
+   var new_customer = $('input[name="customer"]:checked').val();
+	
+		if(new_customer == "no" && (current_fs = $("#yes_return").parent())){
+				
+				//current_fs = $("#for_new_customer").parent();
+				current_fs = $("#yes_return").parent();
+				next_fs = $(this).parent().next().next();
+				//alert(new_customer);
+
+			}
+	
+	//next_fs = $(this).parent().next().next();
+
+
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'transform': 'scale('+scale+')'});
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".submit").click(function(){
+	return false;
+})
+
+});
+</script>
+
+
+</body>
+</html>
